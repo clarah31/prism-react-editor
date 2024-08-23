@@ -227,7 +227,7 @@ const Editor = memo(
 				>
 					<div className="pce-overlays">
 						<textarea
-							spellCheck="false"
+							spellCheck={false}
 							autoCapitalize="off"
 							autoComplete="off"
 							inputMode={props.readOnly ? "none" : "text"}

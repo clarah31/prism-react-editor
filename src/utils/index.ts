@@ -1,5 +1,5 @@
-import { addTextareaListener, numLines, selectionChange } from "../core"
-import { PrismEditor, InputSelection } from "../types"
+import { addTextareaListener, numLines, selectionChange } from "../core.tsx"
+import { PrismEditor, InputSelection } from "../types.ts"
 import { getLineEnd, getLineStart } from "./local.ts"
 
 let prevSelection: InputSelection | 0
