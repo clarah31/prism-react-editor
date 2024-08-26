@@ -7,6 +7,7 @@ Code editor component for React apps
 
 ## What?
 
+Test Range
 This is a rewrite of [Prism code editor](https://github.com/FIameCaster/prism-code-editor) using React and hooks. It's a lightweight, extensible code editor optimized for fast load times with many optional extensions.
 
 ## Contents
@@ -54,27 +55,27 @@ You must already have `react` and `react-dom` version 16.8.0 or greater installe
 Below is an example of a simple JSX editor.
 
 ```jsx
-import { Editor } from "prism-react-editor"
-import { BasicSetup } from "prism-react-editor/setups"
+import { Editor } from 'prism-react-editor';
+import { BasicSetup } from 'prism-react-editor/setups';
 
 // Adding the JSX grammar
-import "prism-react-editor/prism/languages/jsx"
+import 'prism-react-editor/prism/languages/jsx';
 
 // Adds comment toggling and auto-indenting for JSX
-import "prism-react-editor/languages/jsx"
+import 'prism-react-editor/languages/jsx';
 
-import "prism-react-editor/layout.css"
-import "prism-react-editor/themes/github-dark.css"
+import 'prism-react-editor/layout.css';
+import 'prism-react-editor/themes/github-dark.css';
 
 // Required by the basic setup
-import "prism-react-editor/search.css"
+import 'prism-react-editor/search.css';
 
 function MyEditor() {
   return (
     <Editor language="jsx" value="const foo = 'bar'">
-      {editor => <BasicSetup editor={editor} />}
+      {(editor) => <BasicSetup editor={editor} />}
     </Editor>
-  )
+  );
 }
 ```
 
@@ -105,11 +106,9 @@ This component is not controlled, and the `value` prop should be treated like an
 ```jsx
 // counterexample: do not do this
 function MyEditor() {
-  const [value, setValue] = useState("const foo = 'bar'")
+  const [value, setValue] = useState("const foo = 'bar'");
 
-  return (
-    <Editor language="jsx" value={value} onUpdate={setValue} />
-  )
+  return <Editor language="jsx" value={value} onUpdate={setValue} />;
 }
 ```
 
@@ -133,46 +132,55 @@ There are extensions adding:
 Many commonly used extensions are added by `BasicSetup`, but if you want to fully customize which extensions are added. Below it's shown how to import most extensions.
 
 ```tsx
-import { Editor, PrismEditor } from "prism-react-editor"
-import "prism-react-editor/prism/languages/jsx"
-import "prism-react-editor/layout.css"
+import { Editor, PrismEditor } from 'prism-react-editor';
+import 'prism-react-editor/prism/languages/jsx';
+import 'prism-react-editor/layout.css';
 // Needed for the search widget
-import "prism-react-editor/search.css"
+import 'prism-react-editor/search.css';
 // Needed for the copy button
-import "prism-react-editor/copy-button.css"
+import 'prism-react-editor/copy-button.css';
 
-import { useBracketMatcher } from "prism-react-editor/match-brackets"
-import { useHightlightBracketPairs } from "prism-react-editor/highlight-brackets"
-import { IndentGuides } from "prism-react-editor/guides"
-import { useHighlightSelectionMatches, useSearchWidget } from "prism-react-editor/search"
-import { useHighlightMatchingTags, useTagMatcher } from "prism-react-editor/match-tags"
-import { useCursorPosition } from "prism-react-editor/cursor"
-import { useDefaultCommands, useEditHistory } from "prism-react-editor/commands"
-import { useCopyButton } from "prism-react-editor/copy-button"
-import { useOverscroll } from "prism-react-editor/overscroll"
+import { useBracketMatcher } from 'prism-react-editor/match-brackets';
+import { useHightlightBracketPairs } from 'prism-react-editor/highlight-brackets';
+import { IndentGuides } from 'prism-react-editor/guides';
+import {
+  useHighlightSelectionMatches,
+  useSearchWidget,
+} from 'prism-react-editor/search';
+import {
+  useHighlightMatchingTags,
+  useTagMatcher,
+} from 'prism-react-editor/match-tags';
+import { useCursorPosition } from 'prism-react-editor/cursor';
+import {
+  useDefaultCommands,
+  useEditHistory,
+} from 'prism-react-editor/commands';
+import { useCopyButton } from 'prism-react-editor/copy-button';
+import { useOverscroll } from 'prism-react-editor/overscroll';
 
 function MyExtensions({ editor }: { editor: PrismEditor }) {
-  useBracketMatcher(editor)
-  useHightlightBracketPairs(editor)
-  useOverscroll(editor)
-  useTagMatcher(editor)
-  useHighlightMatchingTags(editor)
-  useDefaultCommands(editor)
-  useEditHistory(editor)
-  useSearchWidget(editor)
-  useHighlightSelectionMatches(editor)
-  useCopyButton(editor)
-  useCursorPosition(editor)
+  useBracketMatcher(editor);
+  useHightlightBracketPairs(editor);
+  useOverscroll(editor);
+  useTagMatcher(editor);
+  useHighlightMatchingTags(editor);
+  useDefaultCommands(editor);
+  useEditHistory(editor);
+  useSearchWidget(editor);
+  useHighlightSelectionMatches(editor);
+  useCopyButton(editor);
+  useCursorPosition(editor);
 
-  return <IndentGuides editor={editor} />
+  return <IndentGuides editor={editor} />;
 }
 
 function MyEditor() {
   return (
     <Editor language="jsx" value="const foo = 'bar'">
-      {editor => <MyExtensions editor={editor} />}
+      {(editor) => <MyExtensions editor={editor} />}
     </Editor>
-  )
+  );
 }
 ```
 
@@ -181,27 +189,27 @@ function MyEditor() {
 Lazy loading extensions is also possible for code splitting. It's not recommended to lazy load `useBracketMatcher` and you might want `IndentGuides` to be present on first render. All other extensions will work perfectly fine while lazy loaded.
 
 ```jsx
-import { lazy } from "react"
+import { lazy } from 'react';
 
-const LazyExtensions = lazy(() => import("./extensions"))
+const LazyExtensions = lazy(() => import('./extensions'));
 
 function MyExtensions({ editor }: { editor: PrismEditor }) {
-  useBracketMatcher(editor)
+  useBracketMatcher(editor);
 
-  return <IndentGuides editor={editor} />
+  return <IndentGuides editor={editor} />;
 }
 
 function MyEditor() {
   return (
     <Editor language="jsx" value="const foo = 'bar'">
-      {editor => (
+      {(editor) => (
         <>
           <MyExtensions editor={editor} />
           <LazyExtensions editor={editor} />
         </>
       )}
     </Editor>
-  )
+  );
 }
 ```
 
@@ -210,22 +218,22 @@ function MyEditor() {
 If you need to do anything more than adding an `onUpdate` or `onSelectionChange` prop, you should consider creating your own extension.
 
 ```tsx
-import { useLayoutEffect, useEffect } from "react"
-import { PrismEditor, Editor } from "prism-react-editor"
-import { BasicSetup } from "prism-react-editor/setups"
+import { useLayoutEffect, useEffect } from 'react';
+import { PrismEditor, Editor } from 'prism-react-editor';
+import { BasicSetup } from 'prism-react-editor/setups';
 
 function MyExtension({ editor }: { editor: PrismEditor }) {
   // Layout effects will run before the editor has mounted
   useLayoutEffect(() => {
-    return editor.on("selectionChange", selection => {
-      console.log("Selection changed:", selection)
-    })
-  }, [])
+    return editor.on('selectionChange', (selection) => {
+      console.log('Selection changed:', selection);
+    });
+  }, []);
 
   useEffect(() => {
     // The editor has mounted now
-    editor.textarea!.focus()
-  }, [])
+    editor.textarea!.focus();
+  }, []);
 
   // The elements returned are added to the editor's overlays
   // Keep in mind that they will get some default styles
@@ -234,15 +242,15 @@ function MyExtension({ editor }: { editor: PrismEditor }) {
       <div>My overlay</div>
       <BasicSetup editor={editor} />
     </>
-  )
+  );
 }
 
 function MyEditor() {
   return (
     <Editor language="jsx" value="const foo = 'bar'">
-      {editor => <MyExtension editor={editor} />}
+      {(editor) => <MyExtension editor={editor} />}
     </Editor>
-  )
+  );
 }
 ```
 
@@ -308,7 +316,7 @@ This library also supports auto-indenting, comment toggling and self-closing tag
 The easiest way is to import all languages at ~3.6kB gzipped. You can dynamically import this since it's usually not needed before the page has loaded.
 
 ```javascript
-import("prism-react-editor/languages")
+import('prism-react-editor/languages');
 ```
 
 You can also import `prism-react-editor/languages/common` instead to support a subset of common languages at less than 2kB gzipped.
@@ -334,13 +342,13 @@ here are currently 13 different themes you can import, one of them being from `p
 You can also dynamically import themes into your JavaScript.
 
 ```javascript
-import { loadTheme } from "prism-react-editor/themes"
+import { loadTheme } from 'prism-react-editor/themes';
 
-const isDark = matchMedia("(prefers-color-scheme: dark)").matches
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
-loadTheme(isDark ? "github-dark" : "github-light").then(theme => {
-  console.log(theme)
-})
+loadTheme(isDark ? 'github-dark' : 'github-light').then((theme) => {
+  console.log(theme);
+});
 ```
 
 If none of the themes fit your website, use one of them as an example to help implement your own.
