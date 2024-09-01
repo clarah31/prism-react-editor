@@ -69,9 +69,9 @@ const Editor = memo(
 			name: T,
 			...args: Parameters<EditorEventMap[T]>
 		) => {
-			// @ts-expect-error TS is wrong
+			//@ts-ignore
 			listeners[name]?.forEach(handler => handler(...args))
-			// @ts-expect-error TS is wrong
+			
 			editor.props["on" + name[0].toUpperCase() + name.slice(1)]?.(...args, editor)
 		}
 

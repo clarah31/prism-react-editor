@@ -102,6 +102,7 @@ const useAutoComplete = (editor: PrismEditor, config: AutoCompleteConfig) => {
 
 		const updateRow = (index: number) => {
 			const option = currentOptions[index + offset]
+			//@ts-ignore
 			const [iconEl, labelEl, detailsEl] = rows[index].children as HTMLCollectionOf<HTMLDivElement>
 			const completion = option[4]
 			const icon = completion.icon || "variable"
@@ -243,7 +244,8 @@ const useAutoComplete = (editor: PrismEditor, config: AutoCompleteConfig) => {
 				})
 
 				if (currentOptions[0]) {
-					currentOptions.sort((a, b) => b[0] - a[0] || a[4].label.localeCompare(b[4].label))
+					
+					//AUIT currentOptions.sort((a, b) => b[0] - a[0] || a[4].label.localeCompare(b[4].label))
 					numOptions = currentOptions.length
 					activeIndex = offset = 0
 

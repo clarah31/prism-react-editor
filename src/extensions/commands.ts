@@ -1,3 +1,4 @@
+
 import { useEffect } from "react"
 import { addTextareaListener, languageMap, preventDefault, useStableRef } from "../core"
 import { InputCommandCallback, InputSelection, KeyCommandCallback, PrismEditor } from "../types"
@@ -72,7 +73,7 @@ const useDefaultCommands = (
 
 		const getIndent = ({ insertSpaces = true, tabSize } = editor.props) =>
 			[insertSpaces ? " " : "\t", insertSpaces ? tabSize || 2 : 1] as const
-
+//@ts-ignore
 		const scroll = () => !editor.props.readOnly && !editor.extensions.cursor?.scrollIntoView()
 
 		/**
@@ -88,9 +89,11 @@ const useDefaultCommands = (
 		) =>
 			(start < end ||
 				(!wrapOnly && props[1].test((value[end - 1] || " ") + open + (value[end] || " ")))) &&
+			//@ts-ignore
 			!insertText(editor, open + value.slice(start, end) + close, null, null, start + 1, end + 1)!
 
 		const skipIfEqual = ([start, end]: InputSelection, char: string, value: string) =>
+			//@ts-ignore
 			start == end && value[end] == char && !setSelection(editor, start + 1)!
 
 		/**

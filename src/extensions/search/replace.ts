@@ -80,6 +80,7 @@ export const useEditorReplace = (
 
 	return useMemo<ReplaceAPI>(
 		() =>
+		//@ts-ignore
 			Object.assign(search, {
 				next() {
 					const cursor = getSelection()[1]

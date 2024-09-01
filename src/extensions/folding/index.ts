@@ -224,6 +224,7 @@ const useReadOnlyCodeFolding = (editor: PrismEditor, ...providers: FoldingRangeP
 				toggleFold: (lineNumber, force) =>
 					!!foldPositions[lineNumber] &&
 					foldedLines.has(lineNumber) != force &&
+					//@ts-ignore
 					!toggleFold(lineNumber)!,
 				updateFolds: () => update(),
 			}

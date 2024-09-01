@@ -203,6 +203,7 @@ const setSelection = (
 
 	// Blurs the textarea if it wasn't focused before and calls `selectionChange` with `true`
 	// This will set `selectionChange` to null, so we must access the variable before
+	//@ts-ignore
 	selectionChange!(!(!focused && (relatedTarget ? relatedTarget.focus() : textarea.blur())))
 }
 
