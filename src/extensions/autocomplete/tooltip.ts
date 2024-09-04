@@ -258,11 +258,12 @@ const useAutoComplete = (editor: PrismEditor, config: AutoCompleteConfig) => {
 						const pos = cursor!.getPosition()
 						const max = Math.max(pos.bottom, pos.top)
 						tooltip.style.width = `min(25em, ${clientWidth}px - var(--padding-left) - 1em)`
-						tooltip.style.maxHeight = `min(17em, ${max}px + .25em, ${clientHeight}px - 2em)`
+						// AUIT tooltip.style.maxHeight = `min(17em, ${max}px + .25em, ${clientHeight}px - 2em)`
 					}
 
 					list.style.paddingTop = ""
 					list.style.height = rowHeight ? rowHeight * numOptions + "px" : 1.4 * numOptions + "em"
+					
 					tooltip.scrollTop = 0
 
 					isOpen = true

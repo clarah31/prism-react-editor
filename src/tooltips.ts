@@ -26,15 +26,27 @@ const show = (
 	let cursor = editor.extensions.cursor
 	if (cursor) {
 		let { left, right, top, bottom, height } = cursor.getPosition()
-		container.parentNode || editor.lines![0].append(container)
-		spacerStyle.width = (editor.props.rtl ? right : left) + "px"
-
+		// AUIT
+		//container.parentNode || editor.lines![0].append(container)
+		container.parentNode || editor.lines![0].parentNode.parentNode.append(container)
+		spacerStyle.width = '0px';//(editor.props.rtl ? right : left) + "px"
+		spacerStyle.display='none'
+		//console.log("show",top,container,container.parentElement,container.parentElement.getBoundingClientRect())
+		container.parentElement.offsetTop
 		let placeAbove =
 			!above == top > bottom && (above ? top : bottom) < container.clientHeight ? !above : above
-
-		container.style[placeAbove ? "bottom" : "top"] = height + (placeAbove ? bottom : top) + "px"
-		container.style[placeAbove ? "top" : "bottom"] = "auto"
-	}
+			//document.body.appendChild(container);
+			container.style.position='absolute'
+		 //container.style[placeAbove ? "bottom" : "top"] = height + (placeAbove ? bottom : top) + "px"
+		//container.style[placeAbove ? "top" : "bottom"] = "auto"
+		container.style.top=''+(container.parentElement.offsetTop+5.5+15.4+top)+'px';
+		container.style.left=''+((editor.props.rtl ? right : left) ) + "px";
+		container.style.maxHeight = '10em'
+		
+/* 		container.style.top='100px';
+		container.style.bottom='400px';
+		container.style.height='500px'
+ */	}
 }
 
 /**
@@ -111,10 +123,11 @@ export const useTooltip = (
 	}, [element])
 
 	spacerStyle.flexShrink = fixedWidth ? "" : "0"
+	
 	element.style.flexShrink = fixedWidth ? "0" : ""
 
 	return [
 		useCallback(show.bind(editor, editor, container, spacerStyle), []),
-		useCallback(() => container.remove(), []),
+		useCallback( () => container.remove() , []),
 	]
 }
