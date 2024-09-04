@@ -32,7 +32,7 @@ const show = (
 		spacerStyle.width = '0px';//(editor.props.rtl ? right : left) + "px"
 		spacerStyle.display='none'
 		//console.log("show",top,container,container.parentElement,container.parentElement.getBoundingClientRect())
-		container.parentElement.offsetTop
+		//container.parentElement.offsetTop
 		let placeAbove =
 			!above == top > bottom && (above ? top : bottom) < container.clientHeight ? !above : above
 			//document.body.appendChild(container);
@@ -40,7 +40,7 @@ const show = (
 		 //container.style[placeAbove ? "bottom" : "top"] = height + (placeAbove ? bottom : top) + "px"
 		//container.style[placeAbove ? "top" : "bottom"] = "auto"
 		container.style.top=''+(container.parentElement.offsetTop+5.5+15.4+top)+'px';
-		container.style.left=''+((editor.props.rtl ? right : left) ) + "px";
+		container.style.left=''+((editor.props.rtl ? right : (container.parentElement.offsetLeft+left)) ) + "px";
 		container.style.maxHeight = '10em'
 		
 /* 		container.style.top='100px';
