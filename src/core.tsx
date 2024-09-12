@@ -85,7 +85,7 @@ const Editor = memo(
     ) => {
       //@ts-ignore
       listeners[name]?.forEach((handler) => handler(...args));
-
+//@ts-ignore
       editor.props['on' + name[0].toUpperCase() + name.slice(1)]?.(
         ...args,
         editor

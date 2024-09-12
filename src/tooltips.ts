@@ -28,7 +28,8 @@ const show = (
 		let { left, right, top, bottom, height } = cursor.getPosition()
 		// AUIT
 		//container.parentNode || editor.lines![0].append(container)
-		container.parentNode || editor.lines![0].parentNode.parentNode.append(container)
+		container.parentNode || (editor.lines && editor.lines[0] && editor.lines[0].parentNode&& editor.lines[0].parentNode.parentNode
+			&& editor.lines[0].parentNode.parentNode.append(container))
 		spacerStyle.width = '0px';//(editor.props.rtl ? right : left) + "px"
 		spacerStyle.display='none'
 		//console.log("show",top,container,container.parentElement,container.parentElement.getBoundingClientRect())
@@ -39,8 +40,8 @@ const show = (
 			container.style.position='absolute'
 		 //container.style[placeAbove ? "bottom" : "top"] = height + (placeAbove ? bottom : top) + "px"
 		//container.style[placeAbove ? "top" : "bottom"] = "auto"
-		container.style.top=''+(container.parentElement.offsetTop+5.5+15.4+top)+'px';
-		container.style.left=''+((editor.props.rtl ? right : (container.parentElement.offsetLeft+left)) ) + "px";
+		container.style.top=''+(container.parentElement && container.parentElement.offsetTop+5.5+15.4+top)+'px';
+		container.style.left=''+((editor.props.rtl ? right : (container.parentElement&&container.parentElement.offsetLeft+left)) ) + "px";
 		container.style.maxHeight = '10em'
 		
 /* 		container.style.top='100px';
